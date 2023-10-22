@@ -1,6 +1,6 @@
 package dev.ehyeon.attendance.attendance.adapter.in.web;
 
-import dev.ehyeon.attendance.attendance.application.port.in.SaveAttendanceByIdRequest;
+import dev.ehyeon.attendance.attendance.application.port.in.SaveAttendanceByUserIdRequest;
 import dev.ehyeon.attendance.attendance.application.port.in.SaveAttendanceUseCase;
 import dev.ehyeon.attendance.attendance.application.service.DuplicatedAttendanceException;
 import dev.ehyeon.attendance.global.error.Error;
@@ -19,8 +19,8 @@ public class SaveAttendanceController {
     private final SaveAttendanceUseCase saveAttendanceUseCase;
 
     @PostMapping("/attendance")
-    public void saveAttendanceById(@RequestBody @Valid SaveAttendanceByIdRequest saveAttendanceByIdRequest) {
-        saveAttendanceUseCase.saveAttendanceByUserId(saveAttendanceByIdRequest.getId());
+    public void saveAttendanceByUserId(@RequestBody @Valid SaveAttendanceByUserIdRequest saveAttendanceByUserIdRequest) {
+        saveAttendanceUseCase.saveAttendanceByUserId(saveAttendanceByUserIdRequest.getUserId());
     }
 
     @ExceptionHandler(UserNotFoundException.class)

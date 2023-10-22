@@ -11,9 +11,9 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class SaveAttendanceByIdRequest {
+public class SaveAttendanceByUserIdRequest {
 
     @NotNull
     @Positive
-    private Long id;
+    private Long userId;
 }
