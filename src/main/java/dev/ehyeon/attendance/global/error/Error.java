@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum Error {
 
+    DUPLICATED_ID(409, "Duplicated Id"),
     USER_NOT_FOUND(404, "User Not Found");
 
     private final int statusCode;
