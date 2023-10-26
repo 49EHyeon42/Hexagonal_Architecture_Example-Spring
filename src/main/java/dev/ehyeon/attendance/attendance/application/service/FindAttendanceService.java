@@ -4,8 +4,6 @@ import dev.ehyeon.attendance.attendance.application.port.in.FindAttendanceByUser
 import dev.ehyeon.attendance.attendance.application.port.in.FindAttendanceUseCase;
 import dev.ehyeon.attendance.attendance.application.port.out.FindAttendancePort;
 import dev.ehyeon.attendance.attendance.domain.Attendance;
-import dev.ehyeon.attendance.user.application.port.out.FindUserPort;
-import dev.ehyeon.attendance.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +15,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FindAttendanceService implements FindAttendanceUseCase {
 
-    private final FindUserPort findUserPort;
     private final FindAttendancePort findAttendancePort;
 
     @Override
     public List<LocalDate> findAttendanceByUserIdAndDateBetween(FindAttendanceByUserIdAndDateBetweenRequest findAttendanceByUserIdAndDateBetweenRequest) {
-        User user = findUserPort.findUserById(findAttendanceByUserIdAndDateBetweenRequest.getUserId());
-
         List<Attendance> attendances = findAttendancePort
-                .findAllAttendanceByUserAndDateBetween(user,
+                .findAllAttendanceByUserIdAndDateBetween(findAttendanceByUserIdAndDateBetweenRequest.getUserId(),
                         findAttendanceByUserIdAndDateBetweenRequest.getFrom(),
                         findAttendanceByUserIdAndDateBetweenRequest.getTo());
 

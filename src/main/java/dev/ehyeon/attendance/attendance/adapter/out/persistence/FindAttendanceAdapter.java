@@ -4,9 +4,7 @@ import dev.ehyeon.attendance.attendance.application.port.out.FindAttendancePort;
 import dev.ehyeon.attendance.attendance.domain.Attendance;
 import dev.ehyeon.attendance.global.annotation.PersistenceAdapter;
 import dev.ehyeon.attendance.user.adapter.out.persistence.UserEntity;
-import dev.ehyeon.attendance.user.adapter.out.persistence.UserJpaRepository;
-import dev.ehyeon.attendance.user.adapter.out.persistence.UserNotFoundException;
-import dev.ehyeon.attendance.user.domain.User;
+import dev.ehyeon.attendance.user.application.port.out.FindUserEntityPort;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
@@ -17,13 +15,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FindAttendanceAdapter implements FindAttendancePort {
 
-    private final UserJpaRepository userJpaRepository;
+    private final FindUserEntityPort findUserEntityPort;
     private final AttendanceJpaRepository attendanceJpaRepository;
     private final AttendanceMapper attendanceMapper;
 
     @Override
-    public List<Attendance> findAllAttendanceByUserAndDateBetween(User user, LocalDate from, LocalDate to) {
-        UserEntity foundUserEntity = userJpaRepository.findById(user.getId()).orElseThrow(UserNotFoundException::new);
+    public List<Attendance> findAllAttendanceByUserIdAndDateBetween(long userId, LocalDate from, LocalDate to) {
+        UserEntity foundUserEntity = findUserEntityPort.findUserEntityById(userId);
 
         List<AttendanceEntity> foundAttendanceEntities = attendanceJpaRepository
                 .findByAttendanceEntityIdUserEntityAndAttendanceEntityIdLocalDateBetween(foundUserEntity, from, to);
