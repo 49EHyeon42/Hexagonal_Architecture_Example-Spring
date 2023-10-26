@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface AttendanceJpaRepository extends JpaRepository<AttendanceEntity, AttendanceEntityId> {
 
-    List<AttendanceEntity> findByAttendanceEntityIdUserEntityAndAttendanceEntityIdLocalDateBetween(UserEntity userEntity, LocalDate from, LocalDate to);
+    List<AttendanceEntity> findByAttendanceEntityIdUserEntityAndAttendanceEntityIdDateBetween(UserEntity userEntity, LocalDate from, LocalDate to);
 }

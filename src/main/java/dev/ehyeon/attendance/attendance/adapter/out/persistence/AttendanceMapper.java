@@ -7,6 +7,6 @@ import dev.ehyeon.attendance.global.annotation.Mapper;
 public class AttendanceMapper {
 
     public Attendance attendanceEntityToAttendance(AttendanceEntity attendanceEntity) {
-        return new Attendance(attendanceEntity.getUserId(), attendanceEntity.getLocalDate());
+        return new Attendance(attendanceEntity.getUserId(), attendanceEntity.getDate());
     }
 }

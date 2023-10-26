@@ -24,7 +24,7 @@ public class FindAttendanceAdapter implements FindAttendancePort {
         UserEntity foundUserEntity = findUserEntityPort.findUserEntityById(userId);
 
         List<AttendanceEntity> foundAttendanceEntities = attendanceJpaRepository
-                .findByAttendanceEntityIdUserEntityAndAttendanceEntityIdLocalDateBetween(foundUserEntity, from, to);
+                .findByAttendanceEntityIdUserEntityAndAttendanceEntityIdDateBetween(foundUserEntity, from, to);
 
         return foundAttendanceEntities.stream()
                 .map(attendanceMapper::attendanceEntityToAttendance)

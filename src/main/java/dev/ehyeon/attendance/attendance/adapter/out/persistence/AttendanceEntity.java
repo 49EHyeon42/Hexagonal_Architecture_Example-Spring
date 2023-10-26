@@ -24,7 +24,7 @@ public class AttendanceEntity {
         return attendanceEntityId.getUserEntity().getId();
     }
 
-    public LocalDate getLocalDate() {
-        return attendanceEntityId.getLocalDate();
+    public LocalDate getDate() {
+        return attendanceEntityId.getDate();
     }
 }

@@ -3,7 +3,10 @@ package dev.ehyeon.attendance.attendance.adapter.out.persistence;
 import dev.ehyeon.attendance.user.adapter.out.persistence.UserEntity;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -18,6 +21,5 @@ public class AttendanceEntityId implements Serializable {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
-    @Column(name = "date")
-    private LocalDate localDate;
+    private LocalDate date;
 }
