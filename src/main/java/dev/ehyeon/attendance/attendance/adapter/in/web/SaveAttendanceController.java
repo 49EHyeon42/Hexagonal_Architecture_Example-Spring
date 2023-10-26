@@ -5,7 +5,6 @@ import dev.ehyeon.attendance.attendance.application.port.in.SaveAttendanceUseCas
 import dev.ehyeon.attendance.attendance.application.service.DuplicatedAttendanceException;
 import dev.ehyeon.attendance.global.error.Error;
 import dev.ehyeon.attendance.global.error.ErrorResponse;
-import dev.ehyeon.attendance.user.adapter.out.persistence.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +20,6 @@ public class SaveAttendanceController {
     @PostMapping("/attendance")
     public void saveAttendanceByUserId(@RequestBody @Valid SaveAttendanceByUserIdRequest saveAttendanceByUserIdRequest) {
         saveAttendanceUseCase.saveAttendanceByUserId(saveAttendanceByUserIdRequest.getUserId());
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse userNotFoundExceptionHandler() {
-        return new ErrorResponse(Error.USER_NOT_FOUND.getMessage());
     }
 
     @ExceptionHandler(DuplicatedAttendanceException.class)
